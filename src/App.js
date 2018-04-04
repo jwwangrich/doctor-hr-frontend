@@ -1,6 +1,6 @@
 import React from 'react';
-import Hello from './Hello.js';
-import Counter from './Counter.js'; 
+
+
 import FetchData from './FetchData.js';
 import AppBar from 'material-ui/AppBar';
 import TextFieldExample from './TextFieldExample.js';
@@ -23,14 +23,10 @@ class App extends React.Component {
 	    <AppBar position="static" style={styles.appBarStyle}>
 			<Toolbar>
 				<Typography variant="title" color="inherit">
-					Sample App	
+					Heart Rate Data	
 				</Typography>
 			</Toolbar>
 		</AppBar>
-		<Hello name="Suyash" color="red"/>
-		<Hello name="Mark" />
-		<Counter name="Suyash"/>
-		<Counter name="Mark"/>
 		<FetchData />
 		<TextFieldExample />
       </div>
