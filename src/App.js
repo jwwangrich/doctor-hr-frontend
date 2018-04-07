@@ -1,11 +1,9 @@
 import React from 'react';
-
-
 import FetchData from './FetchData.js';
 import AppBar from 'material-ui/AppBar';
-import TextFieldExample from './TextFieldExample.js';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import TextFieldExample from './TextFieldExample.js';
 
 var styles = {
 	"appBarStyle": {
@@ -27,7 +25,7 @@ class App extends React.Component {
 				</Typography>
 			</Toolbar>
 		</AppBar>
-		<FetchData />
+		<FetchData element={["Times", "heart rate(BPM)"]} />
 		<TextFieldExample />
       </div>
     );

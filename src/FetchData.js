@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+
 
 var styles = {
 	"dataStyle": {
@@ -15,8 +17,8 @@ class FetchData extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-		    "detect_time": ["No time"],
-		    "usr_email": ["No email"],
+		    "nameTextField": "",
+		    "times": ["No time"],
 		    "usr_heart_rate": ["No heart rate"],
 		};
 	}
@@ -31,44 +33,63 @@ class FetchData extends React.Component {
 	}
 	
 	getData = () => {
-		axios.get("http://127.0.0.1:5000/api/heart_rate/" + "jen.wei.wang@duke.edu").then( (response) => {
+		axios.get("http://vcm-3539.vm.duke.edu:5000/api/heart_rate/" + this.state.nameTextField).then( (response) => {
 			console.log(response);
 			console.log(response.status);
-			this.setState({	
-			"detect_time": response.data.detect_time,
-		    "usr_email": response.data.usr_email,
-		    "usr_heart_rate": response.data.usr_heart_rate,			
-			});
+			this.setState({"times": response.data.times});
+		    this.setState({"usr_heart_rate": response.data.usr_heart_rate});			
 		})	
 	}
+    
+    generateTableDataForLoop = () => {
+		    
+		    var prettyTableData = [];
 
+		    for (var i = 0; i < this.state.times.length; i++) {
+			        prettyTableData.push(
+				            <TableRow>
+					                <TableCell> {this.state.times[i]} </TableCell>
+					                <TableCell> {this.state.usr_heart_rate[i]} </TableCell>
+				            </TableRow>
+			        );
+		    }
+		    return prettyTableData;
+	}
+    
+    
 	render() {
-		return (
-			<div>
-				<Button variant="raised" onClick={this.getData}>
-					Get Data
-				</Button>
-				<div style={styles.dataStyle}>
-					{this.state.detect_time}
+		    var prettyTableData = this.generateTableDataForLoop();
+		    return (
+			        <div style={ {"marginLeft": "20px", "marginBottom": "10px"}}>
+				        <TextField 
+					        value={this.state.nameTextField}
+					        onChange={this.onNameTextFieldChange}/>
+				        <Button onClick={this.onButtonClick}>
+				        <div style={{"backgroundColor": "yellow", "color": "red"}}>
+					            Logging
 				
-				</div>
+				        </div>
+				        </Button>
+			
+				        {this.state.nameTextField /*show the current nameTextField state here in the browser */} 
 				
-				<div style={styles.dataStyle}>
-					{this.state.user_email}
-				
-				</div>
-				
-				<div style={styles.dataStyle}>
-					{this.state.usr_heart_rate}
-				
-				</div>                
-				
-				<div style={styles.dataStyle}>
-					{this.state.data}
-				
-				</div>
-			</div>
-		)
+				        <Button variant="raised" onClick={this.getData}>
+					        Get Data
+				        </Button>
+
+				        <Table>
+					            <TableHead>
+						                <TableRow>
+							                    <TableCell> {this.props.element[0]} </TableCell>
+							                    <TableCell> {this.props.element[1]} </TableCell>
+						                </TableRow>
+					            </TableHead>
+					            {/* time for some data */}
+					            {prettyTableData}	
+				        </Table>
+			
+		            </div>
+		    )
 	}
 }
 
