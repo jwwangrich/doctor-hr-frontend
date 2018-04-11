@@ -41,19 +41,19 @@ class FetchData extends React.Component {
 		})	
 	}
     
-    	generateTableDataForLoop = () => {
+    generateTableDataForLoop = () => {
 		    
-		    var prettyTableData = [];
+		var prettyTableData = [];
 
-		    for (var i = 0; i < this.state.times.length; i++) {
-			        prettyTableData.push(
-				            <TableRow>
-					                <TableCell> {this.state.times[i]} </TableCell>
-					                <TableCell> {this.state.usr_heart_rate[i]} </TableCell>
-				            </TableRow>
-			        );
-		    }
-		    return prettyTableData;
+		for (var i = 0; i < this.state.times.length; i++) {
+			    prettyTableData.push(
+				        <TableRow>
+					            <TableCell> {this.state.times[i]} </TableCell>
+					            <TableCell> {this.state.usr_heart_rate[i]} </TableCell>
+				        </TableRow>
+			    );
+		}
+		return prettyTableData;
 	}
     
     
