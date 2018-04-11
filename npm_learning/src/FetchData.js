@@ -23,7 +23,7 @@ class FetchData extends React.Component {
 		};
 	}
     
-    onNameTextFieldChange = (event) => {
+    	onNameTextFieldChange = (event) => {
 		// Update the nameTextField state whenever the text field is changed or perturbed in any way:
 		this.setState({"nameTextField": event.target.value});
 	}
@@ -41,7 +41,7 @@ class FetchData extends React.Component {
 		})	
 	}
     
-    generateTableDataForLoop = () => {
+    	generateTableDataForLoop = () => {
 		    
 		    var prettyTableData = [];
 
