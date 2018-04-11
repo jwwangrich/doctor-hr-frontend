@@ -22,3 +22,10 @@ run this application
 ```
 npm run start
 ```
+### Usage of react data fetch
+
+After running the web, type the user email for logging and get user specific heart rate data and the detection time.
+For example, the following display the user: ```jen.wei.wang@duke.edu``` and his/her specific deteciton heart rate and 
+the time.
+
+![alt text](https://github.com/jwwangrich/doctor-hr-frontend/blob/master/screenshot_getdata.png)
